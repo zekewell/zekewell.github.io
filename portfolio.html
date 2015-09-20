@@ -67,38 +67,24 @@
             }
         </style>
     </head>
-    
     <body>
-        <! html for the webpage>
-        <div id="all-contents">
-            <nav>
-                <header>Isla de Zekewell</header>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
+        <nav>
+            <header>Isla de Zekewell</header>
+            <ul>
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <div class="content">
+                <h1>Portfolio</h1>
+                <ul id="portfolio">
                 </ul>
-                
-            </nav>
-            <main>
-                <div class="sidebar">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Heisler_Park_Laguna_Beach.jpg" alt="Laguna Beach" height="500" width="1200">
-                </div>
-                <div class="content">
-                    <header>Maxwell Walters</header>
-                    <p>Founder of Adkannon
-                        <section class="interests">
-                            <header>Interests</header>
-                            <ul>
-                                    <li>Civic & Social Structure</li>
-                                    <li>Exploring Mother Nature</li>
-                                    <li>Understanding Alternative Perspectives</li>
-                            </ul>
-                        </section></p>
-                </div>
-                
-            </main>
-        </div>
-        
+            </div>
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script id="portfolioScript">$(document).ready(function() {$.getJSON('projects/projects.json').then(function(data) { data.projects.forEach(function(project){ $('#portfolio').append('<li><a href="projects/' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>'); }); }); });</script>
     </body>
-    
 </html>
