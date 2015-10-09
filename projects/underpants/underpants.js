@@ -488,31 +488,49 @@ _.some = function (col, func){
 * Arguments:
 *   1) An Object
 *   2) An Object
+*   ...Possibly more objects
 * Objectives:
 *   1) Copy properties from <object 2> to <object 1>
-*   2) Do not overwrite properties that alread exist in <object 1>
-*   3) Return Object1 with the new properties
+*   2) If more objects are passed in, copy their properties to <object 1> as well, in the order they are passed in.
+*   3) Return the update <object 1>
 * Examples:
 *   var data = {a:"one"};
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"one"}
 */
 
-_.extend = function( obj1 , obj2){
+
+_.extend = function(){
   
- 
-  var stopspin= Object.keys(obj2);
+ for( var j = 0 ; j  < arguments.length ; j++){
+  
+  var stopspin= Object.keys(arguments[j]);
   
     for (var i = 0 ; i < stopspin.length ; i++){
       
       var key = stopspin[i];
-    
-      obj1[key] =  obj2[key];
-    }  
-  return obj1;
+      arguments[0][key] = arguments[j][key];
+      
+    }
+ }  
+  return arguments[0];
 };
 
 
+// arguments is an array like special variable 
+//that we have available in every function. 
+
+
+_.extend2 = function(){
+  
+  for(var i = 1 ; i < arguments.length ; i++){
+    for(var ponies in arguments[i]){
+    arguments[0][ponies] = arguments[i][ponies];
+    }
+  }  
+  return arguments[0]; 
+  
+};
 
 // This is the proper way to end a javascript library
 }());
